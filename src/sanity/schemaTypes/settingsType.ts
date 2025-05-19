@@ -28,12 +28,13 @@ export const settingsType = defineType({
       of: [{ type: "link" }],
       group: "navigation",
     }),
-    defineField({
+
+    /*defineField({
       name: "footerNavigation",
       type: "array",
       of: [{ type: "link" }],
       group: "navigation",
-    }),
+    }),*/
     defineField({
       name: "contact",
       title: "Contact information",
