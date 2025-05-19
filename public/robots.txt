@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /studio
+
+# Host
+Host: https://www.oliriches.com/
+
+# Sitemaps
+Sitemap: https://www.oliriches.com/sitemap.xml
+Sitemap: https://www.oliriches.com//server-sitemap-index.xml
