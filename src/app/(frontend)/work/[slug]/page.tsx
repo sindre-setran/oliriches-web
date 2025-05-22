@@ -1,10 +1,10 @@
-import Blocks from "@/components/blocks";
-import Wrapper from "@/components/wrapper";
 import { generateOgImageUrl } from "@/lib/metadata";
 import { sanityFetch } from "@/sanity/lib/live";
-import { PROJECT_QUERY, SETTINGS_QUERY } from "@/sanity/lib/queries";
+import { HOMEPAGE_QUERY, PROJECT_QUERY, SETTINGS_QUERY } from "@/sanity/lib/queries";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+import WorkPageContent from "./page-content";
 
 export async function generateMetadata({
   params,
@@ -41,14 +41,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     params: await params,
   });
 
+  const { data: homepage } = await sanityFetch({
+    query: HOMEPAGE_QUERY,
+  });
+
   if (!project) {
     notFound();
   }
 
-  return (
-    <Wrapper className="pt-40">
-      <h1 className="sr-only">{project?.title}</h1>
-      <Blocks blocks={project.blocks} />
-    </Wrapper>
-  );
+  return <WorkPageContent project={project} homepageProjects={homepage.projects} />;
 }

@@ -4,7 +4,7 @@ import Wrapper from "@/components/wrapper";
 
 export default function Footer({ settings }: { settings: Project.Settings }) {
   return (
-    <footer className="pb-12 pt-24 relative z-10">
+    <footer className="pb-12 pt-24 relative z-10" id="footer">
       <Wrapper className="flex">
         <div className="basis-1/3 hidden md:block">
           <a className="link-hover" href={`mailto:${settings.contact?.email}`}>
