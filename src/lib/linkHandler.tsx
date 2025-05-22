@@ -1,8 +1,12 @@
 import docToUrl from "@/lib/docToUrl";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function linkHandler(link: Project.Link, className?: string) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const pathname = usePathname();
+
   if (link.externalUrl) {
     // Return an external link with an <a> tag
     return (
@@ -25,7 +29,12 @@ export default function linkHandler(link: Project.Link, className?: string) {
     // Only render if we have both a valid URL and title
     if (internalUrl && link.title) {
       return (
-        <Link href={internalUrl} className={cn(className)}>
+        <Link
+          href={internalUrl}
+          className={cn(
+            pathname === internalUrl ? "text-primary pointer-events-none" : "link-hover"
+          )}
+        >
           {link.title}
         </Link>
       );

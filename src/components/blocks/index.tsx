@@ -82,7 +82,7 @@ export default function Blocks({ blocks }: { blocks: Project.Blocks[] }) {
             return (
               <motion.div
                 key={block._key}
-                className={cn(getGridLayoutClass(block.gridLayout), "text-center py-6")}
+                className={cn(getGridLayoutClass(block.gridLayout), "text-center py-4")}
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.2 }}

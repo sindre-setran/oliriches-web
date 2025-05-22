@@ -32,7 +32,17 @@ export default function Header({ settings }: { settings: Project.Settings }) {
             className="fixed inset-0 bg-black/85 z-30 flex items-center justify-center"
           >
             <nav>
-              <ul className="text-white uppercase text-3xl sm:text-4xl lg:text-5xl leading-snug">
+              <ul className="text-white uppercase text-3xl sm:text-4xl lg:text-5xl leading-snug text-center">
+                <li>
+                  <Link
+                    className={cn(
+                      pathname === "/" ? "text-primary pointer-events-none" : "link-hover"
+                    )}
+                    href="/"
+                  >
+                    All
+                  </Link>
+                </li>
                 {settings?.categories?.map((category: Project.Category, index: number) => (
                   <li key={index}>
                     <Link
@@ -157,7 +167,12 @@ export default function Header({ settings }: { settings: Project.Settings }) {
           <nav className="hidden lg:block text-sm uppercase text-right">
             <ul className="flex items-center gap-5">
               <li>
-                <Link className="link-hover" href="/">
+                <Link
+                  className={cn(
+                    pathname === "/" ? "text-primary pointer-events-none" : "link-hover"
+                  )}
+                  href="/"
+                >
                   Work
                 </Link>
               </li>

@@ -21,6 +21,10 @@ export const categoryType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "order",
+      type: "number",
+    }),
+    defineField({
       name: "seo",
       title: "SEO",
       type: "seo",

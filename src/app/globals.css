@@ -146,7 +146,7 @@
     p,
     ul,
     ol {
-      @apply text-lg sm:text-xl leading-[1.4] mb-[1em];
+      @apply text-lg sm:text-xl leading-[1.4] mb-[1em] last:mb-0;
     }
     h2 {
       @apply text-sm mt-6 first:mt-0 mb-1 last:mb-0;

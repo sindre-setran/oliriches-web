@@ -69,7 +69,7 @@ export const SETTINGS_QUERY = defineQuery(`*[_type == "settings"][0]{
   contact,
   socialMedia,
   seo,
-  "categories": *[_type == "category"] {
+  "categories": *[_type == "category"] | order(order asc) {
     _id,
     _type,
     title,
