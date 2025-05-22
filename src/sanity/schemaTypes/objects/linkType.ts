@@ -22,6 +22,12 @@ const internalReference = defineField({
   }) => !value && parent?._type === "linkExternal" && parent?.externalUrl !== undefined,
 });
 
+const url = defineField({
+  name: "url",
+  title: "URL",
+  type: "string",
+});
+
 const externalUrl = defineField({
   name: "externalUrl",
   title: "External URL",
@@ -41,7 +47,7 @@ const linkType = defineType({
   name: "link",
   type: "object",
   icon: LinkIcon,
-  fields: [title, internalReference, externalUrl],
+  fields: [title, internalReference, url, externalUrl],
 });
 
 const linkInternalType = defineType({

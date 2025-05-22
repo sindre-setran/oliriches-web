@@ -7,6 +7,8 @@ export default function linkHandler(link: Project.Link, className?: string) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const pathname = usePathname();
 
+  console.log(link);
+
   if (link.externalUrl) {
     // Return an external link with an <a> tag
     return (
@@ -39,6 +41,15 @@ export default function linkHandler(link: Project.Link, className?: string) {
         </Link>
       );
     }
+  } else if (link.url) {
+    return (
+      <Link
+        href={link.url}
+        className={cn(pathname === link.url ? "text-primary pointer-events-none" : "link-hover")}
+      >
+        {link.title}
+      </Link>
+    );
   }
 
   // Default fallback if no valid link is provided

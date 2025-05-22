@@ -50,6 +50,7 @@ declare global {
         slug: string;
       };
       externalUrl?: string;
+      url?: string;
     };
 
     /* Grid Layout */
@@ -128,6 +129,7 @@ declare global {
       mainImage: Image;
       blocks?: ProjectBlock[];
       seo?: SEO;
+      projectType: "story" | "work";
     };
 
     type Page = {

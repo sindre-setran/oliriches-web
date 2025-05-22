@@ -23,6 +23,7 @@ const LINK_FIELD = groq`
   },
   externalUrl,
   title,
+  url,
   _type,
   _key,
 `;
@@ -107,6 +108,16 @@ export const CATEGORY_QUERY = defineQuery(`*[_type == "category" && slug.current
   }
 }`);
 
+export const STORIES_QUERY = defineQuery(`*[_type == "project" && projectType == "story"]{
+  _id,
+  _type,
+  title,
+  "slug": slug.current,
+  mainImage {
+    ${IMAGE_FIELDS}
+  }
+}`);
+
 /*export const POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)][0...12]{
   _id,
   title,
@@ -131,6 +142,7 @@ export const PROJECT_QUERY = defineQuery(`*[_type == "project" && slug.current =
     ${GALLERY_FIELD}
   },
   seo,
+  projectType,
 }`);
 
 export const PAGE_QUERY = defineQuery(`*[_type == "page" && slug.current == $slug][0]{

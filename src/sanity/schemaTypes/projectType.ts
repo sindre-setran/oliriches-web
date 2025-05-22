@@ -48,6 +48,21 @@ export const projectType = defineType({
       group: "content",
     }),
     defineField({
+      name: "projectType",
+      type: "string",
+      title: "Project Type",
+      options: {
+        list: [
+          { title: "Project", value: "project" },
+          { title: "Story", value: "story" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
+      },
+      initialValue: "project",
+      group: "content",
+    }),
+    defineField({
       name: "mainImage",
       type: "image",
       title: "Cover Image",

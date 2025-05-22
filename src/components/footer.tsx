@@ -1,10 +1,17 @@
 "use client";
 
 import Wrapper from "@/components/wrapper";
+import { usePathname } from "next/navigation";
 
 export default function Footer({ settings }: { settings: Project.Settings }) {
+  const pathname = usePathname();
+  const isWorkPage = pathname?.startsWith("/work/");
+
   return (
-    <footer className="pb-12 pt-24 relative z-10" id="footer">
+    <footer
+      className={`pb-12 pt-24 relative z-10 ${isWorkPage ? "bg-white" : "bg-transparent"}`}
+      id="footer"
+    >
       <Wrapper className="flex">
         <div className="basis-1/3 hidden md:block">
           <a className="link-hover" href={`mailto:${settings.contact?.email}`}>

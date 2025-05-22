@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
-
 import Blocks from "@/components/blocks";
 import MasonryGrid from "@/components/masonry-grid";
 import Wrapper from "@/components/wrapper";
+import { cn } from "@/lib/utils";
 
 export default function WorkPageContent({
   project,
@@ -13,16 +12,11 @@ export default function WorkPageContent({
   project: Project.Project;
   homepageProjects: Project.Project[];
 }) {
-  useEffect(() => {
-    const footer = document.getElementById("footer");
-    if (footer) {
-      footer.style.backgroundColor = "white";
-    }
-  }, []);
-
   return (
     <>
-      <Wrapper className="pt-40 pb-8 md:pb-12">
+      <Wrapper
+        className={cn("pt-40 pb-8 md:pb-12", project.projectType === "story" && "bg-[#848484]")}
+      >
         <h1 className="sr-only">{project?.title}</h1>
         <Blocks blocks={project.blocks || []} />
       </Wrapper>
