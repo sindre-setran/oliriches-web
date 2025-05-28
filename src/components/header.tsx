@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import Wrapper from "@/components/wrapper";
 import docToUrl from "@/lib/docToUrl";
-import linkHandler from "@/lib/linkHandler";
+import LinkHandler from "@/lib/linkHandler";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
@@ -105,12 +105,24 @@ export default function Header({ settings }: { settings: Project.Settings }) {
             <nav className="text-white uppercase text-3xl sm:text-4xl leading-snug text-center">
               <ul className="py-16">
                 <li>
-                  <Link className="link-hover" href="/">
+                  <Link
+                    className={cn(
+                      pathname === "/" ? "text-primary pointer-events-none" : "link-hover"
+                    )}
+                    href="/"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     Work
                   </Link>
                 </li>
                 {settings.headerNavigation.map((link: Project.Link, index: number) => (
-                  <li key={index}>{linkHandler(link, "link-hover")}</li>
+                  <li key={index}>
+                    <LinkHandler
+                      link={link}
+                      className="link-hover"
+                      onClick={() => setIsMenuOpen(false)}
+                    />
+                  </li>
                 ))}
               </ul>
             </nav>
@@ -183,7 +195,9 @@ export default function Header({ settings }: { settings: Project.Settings }) {
                 </Link>
               </li>
               {settings.headerNavigation.map((link: Project.Link, index: number) => (
-                <li key={index}>{linkHandler(link, "link-hover")}</li>
+                <li key={index}>
+                  <LinkHandler link={link} className="link-hover" />
+                </li>
               ))}
             </ul>
           </nav>

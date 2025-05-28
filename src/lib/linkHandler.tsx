@@ -3,9 +3,19 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function linkHandler(link: Project.Link, className?: string) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+interface LinkHandlerProps {
+  link: Project.Link;
+  className?: string;
+  onClick?: () => void;
+}
+
+export default function LinkHandler({ link, className, onClick }: LinkHandlerProps) {
   const pathname = usePathname();
+
+  // Return null if link is undefined or null
+  if (!link) {
+    return null;
+  }
 
   console.log(link);
 
@@ -17,6 +27,7 @@ export default function linkHandler(link: Project.Link, className?: string) {
         target="_blank"
         rel="noopener noreferrer"
         className={cn(className)}
+        onClick={onClick}
       >
         {link.title}
       </a>
@@ -36,6 +47,7 @@ export default function linkHandler(link: Project.Link, className?: string) {
           className={cn(
             pathname === internalUrl ? "text-primary pointer-events-none" : "link-hover"
           )}
+          onClick={onClick}
         >
           {link.title}
         </Link>
@@ -46,6 +58,7 @@ export default function linkHandler(link: Project.Link, className?: string) {
       <Link
         href={link.url}
         className={cn(pathname === link.url ? "text-primary pointer-events-none" : "link-hover")}
+        onClick={onClick}
       >
         {link.title}
       </Link>
