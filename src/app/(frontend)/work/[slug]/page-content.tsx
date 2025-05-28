@@ -1,9 +1,12 @@
 "use client";
 
+import { useEffect } from "react";
+
 import Blocks from "@/components/blocks";
 import MasonryGrid from "@/components/masonry-grid";
 import Wrapper from "@/components/wrapper";
 import { cn } from "@/lib/utils";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function WorkPageContent({
   project,
@@ -12,6 +15,17 @@ export default function WorkPageContent({
   project: Project.Project;
   homepageProjects: Project.Project[];
 }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (project.projectType === "story") {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("type", "story");
+      router.replace(`?${params.toString()}`);
+    }
+  }, [project.projectType, router, searchParams]);
+
   return (
     <>
       <Wrapper

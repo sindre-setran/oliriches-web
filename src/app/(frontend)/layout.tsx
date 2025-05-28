@@ -15,9 +15,11 @@ export default async function FrontendLayout({
 
   return (
     <>
-      <Header settings={settings} />
-      <main>{children}</main>
-      <Footer settings={settings} />
+      <div className="flex flex-col min-h-screen">
+        <Header settings={settings} />
+        <main className="flex-1">{children}</main>
+        <Footer settings={settings} />
+      </div>
       <SanityLive />
     </>
   );

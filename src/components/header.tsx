@@ -8,7 +8,7 @@ import linkHandler from "@/lib/linkHandler";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -16,10 +16,16 @@ export default function Header({ settings }: { settings: Project.Settings }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  const shouldShowToggle =
+    pathname === "/" ||
+    pathname.startsWith("/category") ||
+    (pathname.startsWith("/work") && searchParams.get("type") !== "story");
 
   return (
     <>
@@ -112,7 +118,7 @@ export default function Header({ settings }: { settings: Project.Settings }) {
         </AnimatePresence>
       )}
 
-      {pathname !== "/about" && (
+      {shouldShowToggle && (
         <div className="fixed py-6 z-40 left-1/2 -translate-x-1/2">
           <div
             className={cn(

@@ -82,7 +82,10 @@ export default function Blocks({ blocks }: { blocks: Project.Blocks[] }) {
             return (
               <motion.div
                 key={block._key}
-                className={cn(getGridLayoutClass(block.gridLayout), "text-center py-4")}
+                className={cn(
+                  getGridLayoutClass(block.gridLayout),
+                  "text-center py-4 flex flex-col justify-center"
+                )}
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.2 }}
@@ -90,7 +93,7 @@ export default function Blocks({ blocks }: { blocks: Project.Blocks[] }) {
                 custom={index}
               >
                 <BlockContent
-                  className="max-w-screen-md mx-auto text-balance"
+                  className="max-w-screen-lg mx-auto text-balance"
                   value={block.content}
                 />
               </motion.div>
