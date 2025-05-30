@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import Wrapper from "@/components/wrapper";
 import docToUrl from "@/lib/docToUrl";
@@ -12,7 +12,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 /* eslint-disable @next/next/no-img-element */
 
-export default function Header({ settings }: { settings: Project.Settings }) {
+function HeaderContent({ settings }: { settings: Project.Settings }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -160,7 +160,7 @@ export default function Header({ settings }: { settings: Project.Settings }) {
         <Wrapper className="flex justify-between items-center">
           <div>
             <Link href="/" className="inline-block link-hover">
-              {pathname === "/about" ? (
+              {!shouldShowToggle ? (
                 <img src="/images/oli-logo.png" alt="Logo" className="h-[33px]" />
               ) : (
                 <svg
@@ -223,5 +223,13 @@ export default function Header({ settings }: { settings: Project.Settings }) {
         </Wrapper>
       </header>
     </>
+  );
+}
+
+export default function Header({ settings }: { settings: Project.Settings }) {
+  return (
+    <Suspense>
+      <HeaderContent settings={settings} />
+    </Suspense>
   );
 }

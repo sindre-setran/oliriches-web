@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 import Blocks from "@/components/blocks";
 import MasonryGrid from "@/components/masonry-grid";
@@ -8,7 +8,7 @@ import Wrapper from "@/components/wrapper";
 import { cn } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function WorkPageContent({
+function WorkPageContentInner({
   project,
   homepageProjects,
 }: {
@@ -38,5 +38,19 @@ export default function WorkPageContent({
         <MasonryGrid projects={homepageProjects} className="py-8 md:py-12" />
       </Wrapper>
     </>
+  );
+}
+
+export default function WorkPageContent({
+  project,
+  homepageProjects,
+}: {
+  project: Project.Project;
+  homepageProjects: Project.Project[];
+}) {
+  return (
+    <Suspense>
+      <WorkPageContentInner project={project} homepageProjects={homepageProjects} />
+    </Suspense>
   );
 }
