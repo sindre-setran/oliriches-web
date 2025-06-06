@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Wrapper from "@/components/wrapper";
 import docToUrl from "@/lib/docToUrl";
@@ -8,24 +8,24 @@ import LinkHandler from "@/lib/linkHandler";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 /* eslint-disable @next/next/no-img-element */
 
-function HeaderContent({ settings }: { settings: Project.Settings }) {
+export default function Header({
+  settings,
+  work = true,
+}: {
+  settings: Project.Settings;
+  work: boolean;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
-
-  const shouldShowToggle =
-    pathname === "/" ||
-    pathname.startsWith("/category") ||
-    (pathname.startsWith("/work") && searchParams.get("type") !== "story");
 
   return (
     <>
@@ -130,7 +130,7 @@ function HeaderContent({ settings }: { settings: Project.Settings }) {
         </AnimatePresence>
       )}
 
-      {shouldShowToggle && (
+      {work && (
         <div className="fixed py-6 z-40 left-1/2 -translate-x-1/2">
           <div
             className={cn(
@@ -160,9 +160,7 @@ function HeaderContent({ settings }: { settings: Project.Settings }) {
         <Wrapper className="flex justify-between items-center">
           <div>
             <Link href="/" className="inline-block link-hover">
-              {!shouldShowToggle ? (
-                <img src="/images/oli-logo.png" alt="Logo" className="h-[33px]" />
-              ) : (
+              {work ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="50"
@@ -179,6 +177,8 @@ function HeaderContent({ settings }: { settings: Project.Settings }) {
                     fill="currentColor"
                   ></path>
                 </svg>
+              ) : (
+                <img src="/images/oli-logo.png" alt="Logo" className="h-[33px]" />
               )}
             </Link>
           </div>
@@ -223,13 +223,5 @@ function HeaderContent({ settings }: { settings: Project.Settings }) {
         </Wrapper>
       </header>
     </>
-  );
-}
-
-export default function Header({ settings }: { settings: Project.Settings }) {
-  return (
-    <Suspense>
-      <HeaderContent settings={settings} />
-    </Suspense>
   );
 }

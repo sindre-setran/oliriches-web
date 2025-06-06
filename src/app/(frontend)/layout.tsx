@@ -1,5 +1,4 @@
 import Footer from "@/components/footer";
-import Header from "@/components/header";
 import { SanityLive } from "@/sanity/lib/live";
 import { sanityFetch } from "@/sanity/lib/live";
 import { SETTINGS_QUERY } from "@/sanity/lib/queries";
@@ -16,7 +15,6 @@ export default async function FrontendLayout({
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <Header settings={settings} />
         <main className="flex-1">{children}</main>
         <Footer settings={settings} />
       </div>

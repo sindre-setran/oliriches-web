@@ -106,6 +106,14 @@ declare global {
       projects?: Project[];
     };
 
+    type Collection = {
+      _id: string;
+      _type: "collection";
+      title: string;
+      slug: string;
+      projects?: Project[];
+    };
+
     export type Post = {
       _id: string;
       _type: "post";

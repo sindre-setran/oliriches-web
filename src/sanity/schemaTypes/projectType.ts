@@ -55,6 +55,7 @@ export const projectType = defineType({
         list: [
           { title: "Project", value: "project" },
           { title: "Story", value: "story" },
+          { title: "Sketch", value: "sketch" },
         ],
         layout: "radio",
         direction: "horizontal",
@@ -138,7 +139,16 @@ export const projectType = defineType({
   preview: {
     select: {
       title: "title",
+      subtitle: "projectType",
       media: "mainImage",
+    },
+    prepare(selection) {
+      const { title, subtitle, media } = selection;
+      return {
+        title,
+        subtitle: subtitle ? subtitle.charAt(0).toUpperCase() + subtitle.slice(1) : "",
+        media,
+      };
     },
   },
 });

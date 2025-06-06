@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import MasonryGrid from "@/components/masonry-grid";
 import Wrapper from "@/components/wrapper";
 import { generateOgImageUrl } from "@/lib/metadata";
@@ -41,14 +42,21 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     params: await params,
   });
 
+  const { data: settings } = await sanityFetch({
+    query: SETTINGS_QUERY,
+  });
+
   if (!category) {
     notFound();
   }
 
   return (
-    <Wrapper>
-      <h1 className="sr-only">{category?.title}</h1>
-      <MasonryGrid projects={category.relatedProjects} />
-    </Wrapper>
+    <>
+      <Header settings={settings} work />
+      <Wrapper>
+        <h1 className="sr-only">{category?.title}</h1>
+        <MasonryGrid projects={category.relatedProjects} />
+      </Wrapper>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import { generateOgImageUrl } from "@/lib/metadata";
 import { sanityFetch } from "@/sanity/lib/live";
 import { HOMEPAGE_QUERY, PROJECT_QUERY, SETTINGS_QUERY } from "@/sanity/lib/queries";
@@ -41,6 +42,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     params: await params,
   });
 
+  const { data: settings } = await sanityFetch({
+    query: SETTINGS_QUERY,
+  });
+
   const { data: homepage } = await sanityFetch({
     query: HOMEPAGE_QUERY,
   });
@@ -49,5 +54,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     notFound();
   }
 
-  return <WorkPageContent project={project} homepageProjects={homepage.projects} />;
+  return (
+    <>
+      <Header settings={settings} work={project.projectType === "project"} />
+      <WorkPageContent project={project} homepageProjects={homepage.projects} />
+    </>
+  );
 }

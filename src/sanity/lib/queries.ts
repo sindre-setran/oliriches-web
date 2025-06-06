@@ -134,7 +134,7 @@ export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slu
   seo,
 }`);*/
 
-export const PROJECT_QUERY = defineQuery(`*[_type == "project" && slug.current == $slug][0]{
+const PROJECT_FIELDS = groq`
   _id,
   _type,
   title,
@@ -143,6 +143,36 @@ export const PROJECT_QUERY = defineQuery(`*[_type == "project" && slug.current =
   },
   seo,
   projectType,
+`;
+
+export const PROJECT_QUERY = defineQuery(`*[_type == "project" && slug.current == $slug][0]{
+  ${PROJECT_FIELDS}
+}`);
+
+export const STORY_QUERY =
+  defineQuery(`*[_type == "project" && projectType == "story" && slug.current == $slug][0]{
+  ${PROJECT_FIELDS}
+}`);
+
+export const SKETCH_QUERY =
+  defineQuery(`*[_type == "project" && projectType == "sketch" && slug.current == $slug][0]{
+  ${PROJECT_FIELDS}
+}`);
+
+export const COLLECTION_QUERY = defineQuery(`*[_type == "collection" && slug.current == $slug][0]{
+  _id,
+  _type,
+  title,
+  projects[] -> {
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+    mainImage {
+      ${IMAGE_FIELDS},
+    },
+  },
+  seo,
 }`);
 
 export const PAGE_QUERY = defineQuery(`*[_type == "page" && slug.current == $slug][0]{

@@ -16,5 +16,8 @@ export default function docToUrl({ _type, slug }: Props) {
   if (_type === "project") {
     return `/work/${slug}`;
   }
+  if (_type === "collection") {
+    return `/collection/${slug}`;
+  }
   return "#";
 }

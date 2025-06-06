@@ -3,6 +3,7 @@ import { type SchemaTypeDefinition } from "sanity";
 import { blockContentType } from "./blockContentType";
 import { boardType } from "./blocks/boardType";
 import { categoryType } from "./categoryType";
+import { collectionType } from "./collectionType";
 import { homepageType } from "./homepageType";
 import { imageType } from "./objects/imageType";
 import { linkExternalType, linkInternalType, linkType } from "./objects/linkType";
@@ -19,6 +20,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homepageType,
     categoryType,
     pageType,
+    collectionType,
     // Objects
     imageType,
     seoType,

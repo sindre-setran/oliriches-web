@@ -12,7 +12,7 @@ const internalReference = defineField({
   name: "reference",
   title: "Reference",
   type: "reference",
-  to: [{ type: "project" }, { type: "category" }, { type: "page" }],
+  to: [{ type: "project" }, { type: "category" }, { type: "page" }, { type: "collection" }],
   hidden: ({
     parent,
     value,
