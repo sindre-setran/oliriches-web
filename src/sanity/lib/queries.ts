@@ -12,7 +12,8 @@ const IMAGE_FIELDS = groq`
         height
       }
     }
-  }
+  },
+  "url": asset->url
 `;
 
 const LINK_FIELD = groq`
@@ -75,7 +76,15 @@ export const SETTINGS_QUERY = defineQuery(`*[_type == "settings"][0]{
     _type,
     title,
     "slug": slug.current,
-  }
+  },
+  logo {
+    primary {
+      ${IMAGE_FIELDS}
+    },
+    secondary {
+      ${IMAGE_FIELDS}
+    },
+  },
 }`);
 
 export const HOMEPAGE_QUERY = defineQuery(`*[_type == "homepage"][0]{

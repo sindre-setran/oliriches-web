@@ -17,8 +17,6 @@ export default function LinkHandler({ link, className, onClick }: LinkHandlerPro
     return null;
   }
 
-  console.log(link);
-
   if (link.externalUrl) {
     // Return an external link with an <a> tag
     return (

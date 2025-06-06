@@ -27,6 +27,8 @@ export default function Header({
     setIsOpen(false);
   }, [pathname]);
 
+  console.log(settings.logo.primary);
+
   return (
     <>
       {isOpen && (
@@ -161,28 +163,13 @@ export default function Header({
           <div>
             <Link href="/" className="inline-block link-hover">
               {work ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="50"
-                  height="33"
-                  viewBox="0 0 50 33"
-                  fill="none"
-                >
-                  <path
-                    d="M43.4 0H27.4H20.8H6.8H0V6.6V26.3V33H6.6H20.6H27.2V26.4V6.6H43.2V15.2H50V6.6V0H43.4ZM20.7 26.4H6.7V6.6H20.7V26.4Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M35.7 8.39999H29.1V17.1L44.9 33L49.6 28.3L35.7 14.4V8.39999Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
+                <img src={settings.logo.primary.url} alt="Logo" className="h-[33px]" />
               ) : (
-                <img src="/images/oli-logo.png" alt="Logo" className="h-[33px]" />
+                <img src={settings.logo.secondary.url} alt="Logo" className="h-[33px]" />
               )}
             </Link>
           </div>
-          <nav className="hidden lg:block text-sm uppercase text-right">
+          <nav className="hidden xl:block text-sm uppercase text-right">
             <ul className="flex items-center gap-5">
               <li>
                 <Link
@@ -201,7 +188,7 @@ export default function Header({
               ))}
             </ul>
           </nav>
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <div className="cursor-pointer link-hover" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               <svg
                 className="menu-closed-icon"

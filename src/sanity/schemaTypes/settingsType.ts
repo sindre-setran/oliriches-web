@@ -29,6 +29,22 @@ export const settingsType = defineType({
       group: "navigation",
     }),
 
+    defineField({
+      name: "logo",
+      type: "object",
+      fields: [
+        {
+          name: "primary",
+          type: "image",
+        },
+        {
+          name: "secondary",
+          type: "image",
+        },
+      ],
+      group: "navigation",
+    }),
+
     /*defineField({
       name: "footerNavigation",
       type: "array",

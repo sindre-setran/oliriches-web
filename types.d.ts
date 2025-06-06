@@ -32,6 +32,7 @@ declare global {
       width: number;
       height: number;
       lqip: string;
+      url: string;
     };
 
     type SEO = {
@@ -180,6 +181,10 @@ declare global {
       };
       categories: Category[];
       seo: SEO;
+      logo: {
+        primary: Image;
+        secondary: Image;
+      };
     };
   }
 }
