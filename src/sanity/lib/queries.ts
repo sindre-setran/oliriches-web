@@ -190,6 +190,9 @@ export const PAGE_QUERY = defineQuery(`*[_type == "page" && slug.current == $slu
   title,
   content,
   seo,
+  image {
+    ${IMAGE_FIELDS}
+  },
 }`);
 
 export const PAGE_PATHS_QUERY = defineQuery(`*[slug != null && !(_id in path('drafts.**'))]{

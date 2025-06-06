@@ -148,6 +148,7 @@ declare global {
       slug: string;
       content: BlockContent;
       seo?: SEO;
+      image?: Image;
     };
 
     type Category = {

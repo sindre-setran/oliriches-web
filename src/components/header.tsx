@@ -27,8 +27,6 @@ export default function Header({
     setIsOpen(false);
   }, [pathname]);
 
-  console.log(settings.logo.primary);
-
   return (
     <>
       {isOpen && (

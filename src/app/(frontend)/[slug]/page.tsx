@@ -1,5 +1,6 @@
 import BlockContent from "@/components/block-content";
 import Header from "@/components/header";
+import SanityImage from "@/components/sanity-image";
 import Wrapper from "@/components/wrapper";
 import { generateOgImageUrl } from "@/lib/metadata";
 import { sanityFetch } from "@/sanity/lib/live";
@@ -53,9 +54,16 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   return (
     <>
       <Header settings={settings} work={false} />
-      <Wrapper>
-        <h1 className="sr-only">{page.title}</h1>
-        <BlockContent className="pt-40 max-w-[720px] mx-auto" value={page.content} />
+      <Wrapper className="pt-40 flex flex-col-reverse md:flex-row justify-center gap-8 lg:gap-10">
+        {page.image && (
+          <div className="max-w-xs lg:max-w-sm w-full">
+            <SanityImage image={page.image} width={1280} quality={90} />
+          </div>
+        )}
+        <div>
+          <h1 className="sr-only">{page.title}</h1>
+          <BlockContent className="max-w-[720px]" value={page.content} />
+        </div>
       </Wrapper>
     </>
   );

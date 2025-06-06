@@ -27,6 +27,12 @@ export const pageType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "image",
+      title: "Image",
+      type: "imageObject",
+      group: "content",
+    }),
+    defineField({
       name: "content",
       title: "Content",
       type: "blockContent",
