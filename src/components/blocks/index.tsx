@@ -11,9 +11,9 @@ const getGridLayoutClass = (layout: Project.GridLayout) => {
     case "full":
       return "col-span-full";
     case "two-column":
-      return "col-span-6";
+      return "col-span-full sm:col-span-6";
     case "three-column":
-      return "col-span-4";
+      return "col-span-full sm:col-span-4";
     default:
       return "col-span-full";
   }

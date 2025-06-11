@@ -56,7 +56,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <Header settings={settings} work={false} />
       <Wrapper className="pt-40 flex flex-col-reverse md:flex-row justify-center gap-8 lg:gap-10">
         {page.image && (
-          <div className="max-w-xs lg:max-w-sm w-full">
+          <div className="max-w-full sm:max-w-xs lg:max-w-sm w-full">
             <SanityImage image={page.image} width={1280} quality={90} />
           </div>
         )}
