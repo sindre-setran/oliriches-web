@@ -26,21 +26,21 @@ export default function MasonryGrid({
       ref={masonryContainer}
     >
       {projects?.map((project: Project.Project, index: number) => (
-        <motion.div
-          key={project._id + index}
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={cardVariants}
-          custom={index}
-        >
-          <Link href={docToUrl(project)}>
-            <SanityImage
-              image={project.mainImage}
-              className="w-full hover:opacity-75 transition-opacity duration-150 ease-out"
-            />
-          </Link>
-        </motion.div>
+        <div key={project._id + index}>
+          <motion.div
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={cardVariants}
+          >
+            <Link href={docToUrl(project)}>
+              <SanityImage
+                image={project.mainImage}
+                className="w-full hover:opacity-75 transition-opacity duration-150 ease-out"
+              />
+            </Link>
+          </motion.div>
+        </div>
       ))}
     </div>
   );
@@ -51,14 +51,14 @@ const cardVariants: Variants = {
     y: 24,
     opacity: 0,
   },
-  onscreen: (index) => ({
+  onscreen: () => ({
     y: 0,
     opacity: 1,
     transition: {
       type: "spring",
       bounce: 0,
       duration: 0.8,
-      delay: index * 0.1,
+      delay: 0,
     },
   }),
 };
