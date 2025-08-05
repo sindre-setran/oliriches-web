@@ -19,7 +19,7 @@ export default function WorkPageContent({
         <Blocks blocks={project.blocks || []} />
       </Wrapper>
       <Wrapper className="bg-white">
-        <MasonryGrid projects={homepageProjects} className="py-8 md:py-12" />
+        <MasonryGrid projects={homepageProjects} className="my-8 md:my-12" />
       </Wrapper>
     </>
   );
