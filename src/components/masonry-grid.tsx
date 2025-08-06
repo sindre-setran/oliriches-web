@@ -102,7 +102,13 @@ export default function MasonryGrid({
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.2 }}
             variants={cardVariants}
-            animate={isLayoutReady ? undefined : "offscreen"}
+            animate={
+              index === 0
+                ? "onscreen" // Force first item to animate immediately
+                : isLayoutReady
+                  ? undefined
+                  : "offscreen"
+            }
           >
             <Link href={docToUrl(project)}>
               <SanityImage
